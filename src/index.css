@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Font cho tiêu đề */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+/* Font cho nội dung */
+body, p, span, li {
+  font-family: 'Roboto', 'Open Sans', 'Lato', 'Nunito', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
