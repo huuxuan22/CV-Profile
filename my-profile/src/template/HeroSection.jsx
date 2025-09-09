@@ -1,244 +1,174 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const HeroSection = () => {
   const [currentImage, setCurrentImage] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
 
-  // Danh sách hình ảnh (thay thế bằng đường dẫn hình ảnh của bạn)
-  const images = [
-    'https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-    'https://images.unsplash.com/photo-1581276879432-15e50529f34b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  // Gradient nền tone xanh dương - trắng tinh tế
+  const backgrounds = [
+    "linear-gradient(135deg,#022c43 0%,#0b486b 50%,#062a44 100%)",
+    "linear-gradient(135deg,#062a44 0%,#0b486b 40%,#0f3750 100%)",
   ];
 
-  // Hiệu ứng chuyển đổi hình ảnh tự động
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 5000); // Chuyển hình mỗi 5 giây
-
+      setCurrentImage((prev) => (prev + 1) % backgrounds.length);
+    }, 6000);
     return () => clearInterval(interval);
-  }, [images.length]);
+  }, [backgrounds.length]);
+
+  const name = "Niko Bocheser"; // đổi tên nếu cần
+  const cvUrl = "/CV.pdf"; // đặt file CV vào public/CV.pdf
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background images với hiệu ứng chuyển đổi */}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-transparent">
+      {/* Background gradient chuyển mượt */}
       <div className="absolute inset-0 z-0">
-        {images.map((image, index) => (
+        {backgrounds.map((bg, idx) => (
           <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-              currentImage === index ? 'opacity-100' : 'opacity-0'
+            key={idx}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              currentImage === idx ? "opacity-100" : "opacity-0"
             }`}
-            style={{
-              backgroundImage: `url(${image})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
+            style={{ background: bg }}
           />
         ))}
-        
-        {/* Gradient overlay sang trọng */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-black/70"></div>
       </div>
 
-      {/* Nội dung chính */}
-      <div className="relative z-10 text-center text-white px-6 max-w-5xl mx-auto flex flex-col items-center">
-        {/* Avatar container */}
-        <div className="mb-8 w-40 h-40 md:w-52 md:h-52 rounded-full border-4 border-white/20 overflow-hidden shadow-2xl animate-float">
-          <img 
-            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" 
-            alt="Your Avatar" 
-            className="w-full h-full object-cover object-center"
+      {/* Overlay hoa văn nhẹ trắng */}
+      <div
+        className="absolute inset-0 z-0 opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0)",
+          backgroundSize: "48px 48px",
+          mixBlendMode: "overlay",
+        }}
+      />
+
+      {/* Card nội dung chính - vuông góc */}
+      <div className="relative z-10 w-full max-w-4xl mx-auto p-8 md:p-12 bg-white/5 backdrop-blur-sm border border-blue-300/20 rounded-none shadow-[0_20px_60px_rgba(2,44,67,0.45)] text-center">
+        {/* Avatar chuyên nghiệp (floating) */}
+        <div className="mx-auto mb-6 w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-white/10 shadow-xl relative transform transition-all hover:scale-102">
+          <img
+            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+            alt={`${name} avatar`}
+            className="w-full h-full object-cover object-top float-animate"
           />
+          <div className="absolute inset-0 rounded-full pointer-events-none ring-2 ring-white/6 animate-border-pulse" />
         </div>
 
-        <div className="mb-8 space-y-4">
-          {/* Greeting */}
-          <div className="overflow-hidden">
-            <h1 className="text-4xl md:text-6xl font-light tracking-wider text-gray-200 animate-fadeInUp">
-              HELLO, I'M
-            </h1>
-          </div>
-          
-          {/* Name */}
-          <div className="overflow-hidden">
-            <h2 className="text-5xl md:text-8xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent animate-slideInLeft">
-              NIKO BOCHESER
-            </h2>
-          </div>
-          
-          {/* Title */}
-          <div className="overflow-hidden">
-            <p className="text-xl md:text-2xl font-light tracking-widest text-gray-300 mb-8 animate-fadeIn delay-500">
-              FREELANCE WEB DEVELOPER
-            </p>
-          </div>
-        </div>
+        {/* Greeting ngắn gọn (Tiếng Việt) */}
+        <p className="text-sm text-blue-200/90 tracking-wider mb-2">
+          Xin chào, tôi là{" "}
+          <span className="font-semibold text-white">{name}</span>, Lập trình
+          viên Fullstack
+        </p>
 
-        {/* Location */}
-        <div className="overflow-hidden mb-10">
-          <p className="text-lg md:text-xl font-light italic text-gray-400 animate-fadeIn delay-700 border-l-4 border-blue-400 pl-4 py-2">
-            Based in Scotland · Web Designer & Developer
-          </p>
-        </div>
+        {/* Tên & tagline */}
+        <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-3 tracking-tight">
+          No pain, no gain
+        </h1>
+        <p className="text-blue-100 max-w-2xl mx-auto leading-relaxed mb-6">
+          Tôi thiết kế và xây dựng ứng dụng web hiện đại, tối ưu hiệu năng và
+          trải nghiệm người dùng — sẵn sàng hiện thực hóa ý tưởng của bạn.
+        </p>
 
-        {/* CTA Button */}
-        <div className="animate-bounceIn delay-1000">
-          <button
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            className="relative group bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-5 px-12 rounded-full text-lg md:text-xl transition-all duration-500 transform hover:scale-105 shadow-2xl hover:shadow-2xl overflow-hidden"
+        {/* CTA: Download CV và Hire Me - vuông góc, hiệu ứng */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-4">
+          <a
+            href={cvUrl}
+            download
+            className="inline-flex items-center gap-3 bg-white text-blue-900 font-semibold px-6 py-3 rounded-none shadow hover:-translate-y-1 transition-transform focus:outline-none focus:ring-4 focus:ring-blue-300"
+            aria-label="Download CV"
           >
-            <span className="relative z-10 flex items-center justify-center">
-              HIRE ME
-              <svg className="w-5 h-5 ml-3 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </span>
-            
-            {/* Hiệu ứng hover */}
-            <span
-              className={`absolute inset-0 bg-white/20 rounded-full transition-all duration-500 transform ${
-                isHovered ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-              }`}
-            ></span>
-            
-            {/* Shine effect */}
-            <span className="absolute inset-0 -skew-x-12 transform translate-x-full group-hover:-translate-x-full transition-transform duration-700">
-              <span className="absolute inset-0 bg-white/10"></span>
-            </span>
-          </button>
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 3v12m0 0l-4-4m4 4 4-4M21 21H3"
+              />
+            </svg>
+            Tải CV
+          </a>
+
+          <a
+            href="mailto:youremail@example.com?subject=Hire%20Request"
+            className="inline-flex items-center gap-3 border border-blue-300 text-white px-6 py-3 rounded-none hover:bg-blue-800/60 transition-colors focus:outline-none focus:ring-4 focus:ring-blue-300"
+            aria-label="Hire Me"
+          >
+            Hire Me
+          </a>
         </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
-          </div>
+        {/* Social / small info */}
+        <div className="mt-8 flex items-center justify-center space-x-4 text-blue-200">
+          <span className="text-sm">Based in Scotland</span>
+          <span className="h-1 w-1 bg-white/10 rounded-sm inline-block" />
+          <span className="text-sm">Web Designer & Developer</span>
         </div>
       </div>
 
-      {/* Chỉ báo hình ảnh */}
-      <div className="absolute bottom-8 right-8 z-10 flex flex-col space-y-3">
-        {images.map((_, index) => (
+      {/* Indicators nền (bên phải dưới) - vuông */}
+      <div className="absolute bottom-6 right-6 z-20 flex space-x-3">
+        {backgrounds.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentImage(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 border-2 border-white ${
-              currentImage === index ? 'bg-white scale-125' : 'bg-transparent scale-100'
+            className={`w-4 h-4 rounded-sm transition-transform duration-300 border ${
+              currentImage === index
+                ? "bg-white border-white/60 scale-110"
+                : "bg-white/10 border-white/20"
             }`}
-            aria-label={`Go to slide ${index + 1}`}
+            aria-label={`Change background ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Styles cho animation */}
+      {/* Local styles cho animation nhẹ và hiệu ứng vuông góc */}
       <style jsx>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(40px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        .hover\\:scale-102:hover {
+          transform: scale(1.02);
         }
-        
-        @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-60px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+        .float-animate {
+          animation: float 6s ease-in-out infinite;
         }
-        
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-        
-        @keyframes bounceIn {
-          0% {
-            opacity: 0;
-            transform: scale(0.3) translateY(40px);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.05) translateY(-10px);
-          }
-          70% {
-            transform: scale(0.95) translateY(5px);
-          }
-          100% {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
-        }
-        
         @keyframes float {
-          0%, 100% {
+          0% {
             transform: translateY(0px);
           }
           50% {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
+          }
+          100% {
+            transform: translateY(0px);
           }
         }
-        
-        @keyframes bounce {
-          0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
+        .animate-border-pulse {
+          animation: borderPulse 2.8s infinite;
+        }
+        @keyframes borderPulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.02);
           }
-          40% {
-            transform: translateY(-10px);
+          70% {
+            box-shadow: 0 0 0 12px rgba(2, 126, 255, 0);
           }
-          60% {
-            transform: translateY(-5px);
+          100% {
+            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
           }
         }
-        
-        .animate-fadeInUp {
-          animation: fadeInUp 1.2s ease-out forwards;
-        }
-        
-        .animate-slideInLeft {
-          animation: slideInLeft 1.2s ease-out forwards;
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 1.2s ease-out forwards;
-        }
-        
-        .animate-bounceIn {
-          animation: bounceIn 1.2s ease-out forwards;
-        }
-        
-        .animate-float {
-          animation: float 4s ease-in-out infinite;
-        }
-        
-        .animate-bounce {
-          animation: bounce 2s infinite;
-        }
-        
-        .delay-500 {
-          animation-delay: 0.5s;
-        }
-        
-        .delay-700 {
-          animation-delay: 0.7s;
-        }
-        
-        .delay-1000 {
-          animation-delay: 1s;
+        @media (prefers-reduced-motion: reduce) {
+          * {
+            animation-duration: 0.001ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.001ms !important;
+          }
         }
       `}</style>
     </section>
