@@ -3,14 +3,193 @@
 @tailwind utilities;
 
 /* Font cho tiêu đề */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Montserrat', 'Poppins', sans-serif;
   font-weight: 700;
 }
 
 /* Font cho nội dung */
-body, p, span, li {
+body,
+p,
+span,
+li {
   font-family: 'Roboto', 'Open Sans', 'Lato', 'Nunito', sans-serif;
   font-weight: 400;
   line-height: 1.6;
+}
+
+/* Background mặc định cho toàn trang */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #0D2D3E 0%, #164E6F 50%, #0D2D3E 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  color: white;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Giữ kích thước chữ hợp lý theo viewport để không quá nhỏ khi zoom/resize */
+html {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+
+/* Container chung để căn giữa nội dung và giới hạn chiều rộng */
+.section-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Lớp nền chung cho toàn bộ ứng dụng */
+.common-background {
+  background: linear-gradient(135deg, #0D2D3E 0%, #164E6F 50%, #0D2D3E 100%);
+  min-height: 100vh;
+}
+
+/* Đảm bảo tất cả section sử dụng màu nền chung */
+.App {
+  background: linear-gradient(135deg, #0D2D3E 0%, #164E6F 50%, #0D2D3E 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* Hiệu ứng nền với các phần tử trang trí */
+.background-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.bg-circle-1 {
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 40%;
+  height: 40%;
+  background: #2A7CB0;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.bg-circle-2 {
+  position: absolute;
+  bottom: -15%;
+  left: -8%;
+  width: 30%;
+  height: 30%;
+  background: #5DC9E4;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.bg-circle-3 {
+  position: absolute;
+  top: 30%;
+  left: 25%;
+  width: 20%;
+  height: 20%;
+  background: #2A7CB0;
+  border-radius: 50%;
+  opacity: 0.05;
+}
+
+/* Pattern lưới nền */
+.grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.05;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Animation cho các phần tử nổi */
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.floating-particle {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  animation: float 15s infinite ease-in-out;
+}
+
+
+
+/* Hiệu ứng nền động cho toàn bộ ứng dụng */
+.App::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(45, 124, 176, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(93, 201, 228, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(30, 106, 147, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+  animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+
+  25% {
+    transform: translateX(-10px) translateY(-5px);
+  }
+
+  50% {
+    transform: translateX(5px) translateY(-10px);
+  }
+
+  75% {
+    transform: translateX(-5px) translateY(5px);
+  }
+}
+
+/* Smooth transitions cho tất cả elements */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
