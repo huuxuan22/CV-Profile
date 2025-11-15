@@ -44,7 +44,8 @@ code {
 
 /* Giữ kích thước chữ hợp lý theo viewport để không quá nhỏ khi zoom/resize */
 html {
-  font-size: clamp(14px, 1.1vw, 16px);
+  font-size: clamp(12px, 1.1vw, 16px);
+  scroll-behavior: smooth;
 }
 
 /* Container chung để căn giữa nội dung và giới hạn chiều rộng */
@@ -192,4 +193,69 @@ html {
 /* Smooth transitions cho tất cả elements */
 * {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+:root {
+  --primary-color: #1e40af;
+  /* Màu chính (xanh đậm) */
+  --secondary-color: #3b82f6;
+  /* Màu phụ (xanh nhạt) */
+  --background-color: #f3f4f6;
+  /* Màu nền */
+  --text-color: #1f2937;
+  /* Màu chữ */
+  --muted-color: #6b7280;
+  /* Màu chữ phụ */
+  --accent-color: #9333ea;
+  /* Màu nhấn (tím) */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Global background */
+body {
+  background: linear-gradient(135deg, #0D3B56 0%, #1C5C84 50%, #2A7CB0 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Remove individual component backgrounds */
+section {
+  background: transparent !important;
+}
+
+/* Ngăn component thu nhỏ quá mức khi zoom - chỉ áp dụng cho các element cụ thể */
+/* Chỉ đặt min-width cho main containers khi cần */
+@media (max-width: 320px) {
+
+  .max-w-6xl,
+  .max-w-7xl,
+  .max-w-5xl {
+    min-width: 280px;
+  }
+}
+
+.section-unified {
+  background: transparent;
+  position: relative;
+}
+
+.section-unified::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 59, 86, 0.1);
+  pointer-events: none;
 }

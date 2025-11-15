@@ -12,14 +12,18 @@ export const vi = {
   blogs: 'Blog',
   talks: 'Thuyết Trình',
   resume: 'CV',
-  
+
   // Hero Section
   hello: 'Xin chào!',
   i_am: 'Tôi là',
+  greeting: 'Hôm nay bạn thấy thế nào?',
   full_stack_developer: 'Full Stack Developer',
+  typewriter_greeting: "Xin chào 👋",
+  typewriter_role: "ReactJS / Java Developer",
+  typewriter_passion: "Yêu thích lập trình & sáng tạo",
   welcome_message: 'Chào mừng bạn đến với portfolio của tôi. Tôi là một lập trình viên đam mê với công nghệ và sáng tạo.',
   get_in_touch: 'Liên Hệ Ngay',
-  
+
   // Skills Section
   professional_skills: 'Kỹ Năng & Công Nghệ',
   skills_description: 'Khám phá các công nghệ và công cụ mà tôi thành thạo, được phân loại theo từng lĩnh vực chuyên môn',
@@ -32,7 +36,7 @@ export const vi = {
   years_experience: 'Năm Kinh Nghiệm',
   projects: 'Dự Án',
   explore_my_projects: 'Khám Phá Dự Án Của Tôi',
-  
+
   // Contact Section
   get_in_touch_title: 'Liên Hệ Với Tôi',
   contact_description: 'Có dự án thú vị? Hãy liên hệ với tôi để thảo luận về cách chúng ta có thể làm việc cùng nhau.',
@@ -44,12 +48,131 @@ export const vi = {
   email: 'Email',
   phone: 'Điện Thoại',
   location: 'Địa Chỉ',
-  
+
+  // Social Links
+  link_github: 'https://github.com/huuxuan22',
+  link_linkedin: 'https://www.linkedin.com/in/huu-xuan-tran-duong-77356a338/',
+  link_twitter: '#',
+  link_facebook: 'https://www.facebook.com/tran.duong.huu.xuan?locale=vi_VN',
+  link_instagram: 'https://www.instagram.com/tranduonghuuxuan/',
+  link_gitlab: 'https://gitlab.com/tranduonghuuxuan22',
+
   // Common
   loading: 'Đang tải...',
   error: 'Lỗi',
   success: 'Thành công',
   close: 'Đóng',
   send: 'Gửi',
-  cancel: 'Hủy'
+  cancel: 'Hủy',
+
+  // About Me
+  full_name: 'Trần Dương Hữu Xuân',
+  age: '22 tuổi',
+  student_year: 'Sinh viên năm 4',
+  university: 'ĐH SPKT Đà Nẵng',
+  address_line: '08 Hai Phong street',
+  strengths_title: 'Điểm Mạnh',
+  strengths_1: 'Ham học hỏi',
+  strengths_2: 'Trách nhiệm cao',
+  strengths_3: 'Thích nghi nhanh',
+  strengths_4: 'Tư duy giải quyết vấn đề',
+  strengths_5: 'Kỹ năng làm việc nhóm',
+  strengths_6: 'Sáng tạo',
+  goals_title: 'Mục Tiêu',
+  goals_1: 'Trở thành Fullstack Developer chuyên nghiệp',
+  goals_2: 'Xây dựng ứng dụng web hiện đại',
+  goals_3: 'Đóng góp cho cộng đồng lập trình',
+  goals_4: 'Phát triển kỹ năng leadership',
+  about_description: 'Tôi là sinh viên Công nghệ thông tin với niềm đam mê lập trình và sáng tạo. Luôn tìm kiếm cơ hội để học hỏi, phát triển kỹ năng và ứng dụng kiến thức vào thực tế. Mong muốn được làm việc trong môi trường chuyên nghiệp và đóng góp cho các dự án ý nghĩa.',
+
+  // Personal Projects
+  experience_title: 'EXPERIENCE',
+  experience_description: 'Các dự án thực tế và kinh nghiệm làm việc chuyên nghiệp',
+  category_all: 'Tất cả',
+  category_internship: 'Thực tập',
+  category_personal: 'Dự án cá nhân',
+  category_group: 'Dự án nhóm',
+  achievements_title: 'Thành tựu nổi bật',
+  button_frontend: 'Frontend',
+  button_backend: 'Backend',
+  button_view_demo: 'Xem Demo',
+  button_view_code: 'Xem Code',
+  team_size: 'Quy mô nhóm',
+
+  // Project 1: Techkan
+  project_techkan_title: 'Techkan',
+  project_techkan_description: 'Phát triển các chức năng quan trọng của hệ thống từ Frontend đến Backend. Tích hợp đăng nhập bên thứ ba (Google/Facebook) nhằm tối ưu trải nghiệm người dùng. Xây dựng chức năng upload hình ảnh lên AWS S3, quản lý ảnh và tối ưu dung lượng hiển thị. Phát triển tính năng xuất file Excel thống kê phục vụ phân tích dữ liệu. Tham gia chỉnh sửa & tối ưu giao diện UI/UX giúp hệ thống nhất quán và dễ sử dụng hơn. Fix bug tồn đọng lâu dài, xử lý lỗi nghiệp vụ và tối ưu hiệu năng hệ thống.',
+  project_techkan_company: 'Techzen Company Limited',
+  project_techkan_role: 'Fullstack Developer Intern',
+  project_techkan_duration: '2 tháng',
+  project_techkan_achievement_1: 'Cải thiện trải nghiệm người dùng khi đăng nhập nhanh hơn và ổn định hơn',
+  project_techkan_achievement_2: 'Rút ngắn thời gian thao tác với dữ liệu nhờ tính năng xuất Excel',
+  project_techkan_achievement_3: 'Góp phần giảm số lượng bug tồn đọng và cải thiện chất lượng hệ thống',
+
+  // Project 2: Ptran Fashion
+  project_ptran_title: 'Ptran Fashion E-commerce',
+  project_ptran_description: 'Xây dựng một website thương mại điện tử thời trang hoàn chỉnh với đầy đủ các tính năng cho cả người dùng và quản trị viên. Người dùng: Đăng ký, đăng nhập (qua Google/Facebook), duyệt sản phẩm, đặt hàng, thanh toán (tiền mặt hoặc WPay), theo dõi đơn hàng, hủy đơn, bình luận, gửi phản hồi. Quản trị viên: Quản lý sản phẩm, đơn hàng, tài khoản, khuyến mãi, phiếu giảm giá, thống kê và xử lý phản hồi từ người dùng.',
+  project_ptran_role: 'Developer (Full-stack)',
+  project_ptran_duration: '3 tháng',
+  project_ptran_achievement_1: 'Xây dựng hệ thống thương mại điện tử hoàn chỉnh với đầy đủ tính năng',
+  project_ptran_achievement_2: 'Tích hợp đăng nhập OAuth và thanh toán WPay',
+  project_ptran_achievement_3: 'Xây dựng trang quản trị với đầy đủ chức năng quản lý',
+
+  // Project 3: Shoez
+  project_shoez_title: 'Shoez E-commerce',
+  project_shoez_description: 'Phát triển website bán giày với trải nghiệm người dùng tối ưu và tính năng quản lý thông minh. Tính năng nổi bật: Hệ thống mua sắm, giỏ hàng và thanh toán bảo mật (MoMo, WPay). Chat trực tuyến thời gian thực giữa khách hàng và cửa hàng qua WebSocket. Trang quản trị cho phép theo dõi thống kê đơn hàng và tiếp nhận phản hồi.',
+  project_shoez_role: 'Developer (Full-stack)',
+  project_shoez_duration: '4 tháng',
+  project_shoez_team_size: '2 người',
+  project_shoez_achievement_1: 'Tích hợp chat real-time giữa khách hàng và cửa hàng qua WebSocket',
+  project_shoez_achievement_2: 'Hệ thống thanh toán bảo mật với MoMo và WPay',
+  project_shoez_achievement_3: 'Trang quản trị với thống kê đơn hàng và quản lý phản hồi',
+
+  // Project 4: Real-time Messaging
+  project_messaging_title: 'Real-time Messaging Web Application',
+  project_messaging_description: 'Phát triển một ứng dụng web nhắn tin thời gian thực (real-time) với đầy đủ các tính năng xã hội. Xác thực linh hoạt: Đăng ký, đăng nhập tài khoản thường, hoặc thông qua Google/Facebook. Tính năng nhắn tin: Chat 1-1 giữa hai người dùng. Tính năng xã hội: Kết bạn, tạo nhóm chat và thêm nhiều thành viên vào nhóm. Tìm kiếm: Tìm kiếm người dùng và danh sách bạn bè để bắt đầu cuộc trò chuyện. Quản lý tài khoản: Đăng xuất, cập nhật thông tin cá nhân.',
+  project_messaging_role: 'Developer (Full-stack)',
+  project_messaging_duration: '1 tháng',
+  project_messaging_achievement_1: 'Xây dựng ứng dụng chat real-time với đầy đủ tính năng xã hội',
+  project_messaging_achievement_2: 'Tích hợp đăng nhập OAuth (Google/Facebook) và xác thực JWT',
+  project_messaging_achievement_3: 'Tính năng chat 1-1, nhóm chat và kết bạn',
+
+  // Hobbies
+  hobby_football: 'Bóng Đá',
+  hobby_football_desc: 'Môn thể thao yêu thích, rèn luyện sức khỏe và tinh thần đồng đội',
+  hobby_volleyball: 'Bóng Chuyền',
+  hobby_volleyball_desc: 'Kỹ năng phối hợp nhịp nhàng, tốc độ và sự chính xác',
+  hobby_guitar: 'Guitar',
+  hobby_guitar_desc: 'Chơi nhạc giúp thư giãn và thể hiện cảm xúc qua âm nhạc',
+  hobby_cajon: 'Cajon',
+  hobby_cajon_desc: 'Tạo nhịp điệu độc đáo, đam mê với percussion',
+  hobby_reading: 'Đọc Sách',
+  hobby_reading_desc: 'Mở rộng kiến thức, phát triển tư duy và trí tưởng tượng',
+  hobby_technology: 'Công Nghệ',
+  hobby_technology_desc: 'Khám phá công nghệ mới, học hỏi và cập nhật xu hướng',
+
+  // Contact
+  call_me: 'Call Me',
+  chat_live: 'Chat Live',
+  chat_available: 'We\'re available Mon - Fri, 9:00 AM - 6:00 PM',
+  chat_available_vi: 'Chúng tôi có mặt Thứ 2 - Thứ 6, 9:00 - 18:00',
+  ask_question: 'Ask a Question',
+  ask_question_vi: 'Đặt Câu Hỏi',
+  ask_question_detail: 'Send us an email and we\'ll get back to you within 24 hours',
+  ask_question_detail_vi: 'Gửi email cho chúng tôi và chúng tôi sẽ phản hồi trong vòng 24 giờ',
+  button_chat_now: 'Chat Now',
+  button_chat_now_vi: 'Chat Ngay',
+  button_get_started: 'Get Started',
+  button_get_started_vi: 'Bắt Đầu',
+  button_visit_page: 'Visit Page',
+  button_visit_page_vi: 'Truy Cập Trang',
+  button_follow_us: 'Follow Us',
+  button_follow_us_vi: 'Theo Dõi',
+  connect_title: 'Kết Nối',
+  connect_title_en: 'Connect',
+  address_full: '08 Hai Phong street, Thanh Khue, Da Nang, Vietnam',
+
+  // Skills
+  other: 'Other',
+  other_vi: 'Khác'
 };

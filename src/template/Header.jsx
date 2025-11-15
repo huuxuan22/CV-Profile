@@ -3,29 +3,62 @@ import { useLanguage } from "../contexts/LanguageContext";
 import { TRANSLATION_KEYS } from "../constants/languages";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import LanguageSwitcherCompact from "../components/LanguageSwitcherCompact";
+import { FaUser, FaCode, FaBriefcase, FaFileDownload, FaEnvelope } from "react-icons/fa";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("about");
   const { t } = useLanguage();
-  const brand = "Niko Bocheser";
-  const cvUrl = "/CV.pdf";
+  const brand = "Trần Dương Hữu Xuân";
+  const cvUrl = "/CV-Fullstack-Develop.pdf";
 
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 10;
       setScrolled(isScrolled);
+
+      // Xác định section đang active dựa trên scroll position
+      const sections = ["about", "skills", "experiences", "contact"];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetBottom = offsetTop + element.offsetHeight;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Kiểm tra ngay khi component mount
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Hàm xử lý smooth scroll với offset cho header
+  const handleSmoothScroll = (e, targetId) => {
+    e.preventDefault();
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const headerHeight = 80; // Chiều cao header (có thể điều chỉnh)
+      const targetPosition = targetElement.offsetTop - headerHeight;
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+    setOpen(false); // Đóng mobile menu nếu đang mở
+  };
+
   return (
     <header
-      className={`w-full fixed top-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-2 shadow-lg" : "py-4"
-      }`}
+      className={`w-full fixed top-0 z-50 transition-all duration-500 ${scrolled ? "py-2 shadow-lg" : "py-4"
+        }`}
       style={{
         background: scrolled
           ? "rgba(23, 79, 112, 0.95)"
@@ -34,9 +67,9 @@ const Header = () => {
         borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        {/* Logo / Brand với Avatar */}
-        <div className="flex items-center gap-3">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center gap-4 md:gap-6">
+        {/* Logo / Brand với Avatar - Luôn hiển thị */}
+        <div className="flex items-center gap-3 flex-shrink-0">
           <div className="relative group">
             <div
               className="flex items-center justify-center text-white font-bold text-lg relative overflow-hidden"
@@ -49,9 +82,9 @@ const Header = () => {
                 transition: "all 0.3s ease",
               }}
             >
-              <img 
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
-                alt="Avatar" 
+              <img
+                src="/assest/avatar.jpg"
+                alt="Avatar"
                 className="w-full h-full object-cover rounded-full"
               />
             </div>
@@ -71,75 +104,65 @@ const Header = () => {
                 opacity: scrolled ? 0.9 : 1,
               }}
             >
-              Lập trình viên Fullstack
+              Fullstack Developer
             </div>
           </div>
         </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* Desktop nav - Hiển thị từ sm trở lên, chỉ ẩn trên mobile */}
+        <nav className="header-nav">
           <a
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
+            className={`header-nav-link ${activeSection === "about" ? "active" : ""}`}
+            href="#about"
+            onClick={(e) => handleSmoothScroll(e, "#about")}
+          >
+            <FaUser className="header-nav-icon" />
+            <span className="header-nav-text">{t(TRANSLATION_KEYS.ABOUT)}</span>
+          </a>
+          <a
+            className={`header-nav-link ${activeSection === "skills" ? "active" : ""}`}
             href="#skills"
+            onClick={(e) => handleSmoothScroll(e, "#skills")}
           >
-            <span>{t(TRANSLATION_KEYS.SKILLS)}</span>
+            <FaCode className="header-nav-icon" />
+            <span className="header-nav-text">{t(TRANSLATION_KEYS.SKILLS)}</span>
           </a>
           <a
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
+            className={`header-nav-link ${activeSection === "experiences" ? "active" : ""}`}
             href="#experiences"
+            onClick={(e) => handleSmoothScroll(e, "#experiences")}
           >
-            <span>{t(TRANSLATION_KEYS.WORK_EXPERIENCES)}</span>
-          </a>
-          <a
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
-            href="#opensource"
-          >
-            <span>{t(TRANSLATION_KEYS.OPEN_SOURCE)}</span>
-          </a>
-          <a
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
-            href="#achievements"
-          >
-            <span>{t(TRANSLATION_KEYS.ACHIEVEMENTS)}</span>
-          </a>
-          <a
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
-            href="#blogs"
-          >
-            <span>{t(TRANSLATION_KEYS.BLOGS)}</span>
-          </a>
-          <a
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
-            href="#talks"
-          >
-            <span>{t(TRANSLATION_KEYS.TALKS)}</span>
+            <FaBriefcase className="header-nav-icon" />
+            <span className="header-nav-text header-nav-text-exp">{t(TRANSLATION_KEYS.WORK_EXPERIENCES)}</span>
+            <span className="header-nav-text-short">Exp</span>
           </a>
           <a
             href={cvUrl}
-            download
-            className="nav-link relative px-3 py-2 text-sm text-white/90 hover:text-white transition-colors duration-300"
+            download="CV-Fullstack-Develop.pdf"
+            className="header-nav-link"
           >
-            <span>{t(TRANSLATION_KEYS.RESUME)}</span>
+            <FaFileDownload className="header-nav-icon" />
+            <span className="header-nav-text">{t(TRANSLATION_KEYS.RESUME)}</span>
           </a>
           <a
-            className="ml-2 px-4 py-2 bg-[#5DC9E4] text-white font-medium rounded-md border border-[#5DC9E4] transition-all duration-300 hover:bg-[#4ab7d3] hover:shadow-lg hover:-translate-y-0.5 focus:outline-none relative overflow-hidden group"
+            className={`header-nav-link ${activeSection === "contact" ? "active" : ""}`}
             href="#contact"
-            style={{ minWidth: "100px" }}
+            onClick={(e) => handleSmoothScroll(e, "#contact")}
           >
-            <span className="relative z-10">{t(TRANSLATION_KEYS.CONTACT)}</span>
-            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            <FaEnvelope className="header-nav-icon" />
+            <span className="header-nav-text">{t(TRANSLATION_KEYS.CONTACT)}</span>
           </a>
         </nav>
 
-        {/* Language Switcher - Desktop */}
-        <div className="hidden lg:flex items-center">
-          <LanguageSwitcher />
+        {/* Language Switcher - Desktop, ở bên phải */}
+        <div className=" sm:flex items-center flex-shrink-0 ml-4">
+          <LanguageSwitcherCompact />
+
         </div>
 
-        {/* Mobile toggle */}
-        <div className="lg:hidden flex items-center gap-2">
+        {/* Mobile toggle - Chỉ hiển thị trên mobile (< 640px) */}
+        <div className="sm:hidden flex items-center gap-2 flex-shrink-0 ml-auto">
           {/* Language Switcher - Mobile */}
-          <LanguageSwitcherCompact />
           <button
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
@@ -148,153 +171,242 @@ const Header = () => {
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
               <span
-                className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                  open ? "transform rotate-45 translate-y-2" : ""
-                }`}
+                className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${open ? "transform rotate-45 translate-y-2" : ""
+                  }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                  open ? "opacity-0" : "opacity-100"
-                }`}
+                className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${open ? "opacity-0" : "opacity-100"
+                  }`}
               ></span>
               <span
-                className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
-                  open ? "transform -rotate-45 -translate-y-2" : ""
-                }`}
+                className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${open ? "transform -rotate-45 -translate-y-2" : ""
+                  }`}
               ></span>
             </div>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Chỉ hiển thị trên mobile (< 640px) */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`sm:hidden  transition-all duration-500 ease-in-out ${open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          }`}
         style={{ background: "rgba(15, 59, 82, 0.98)" }}
       >
         <div className="px-6 py-4 flex flex-col gap-1 text-white">
           <a
-            href="#skills"
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
-            onClick={() => setOpen(false)}
+            href="#about"
+            className={`nav-mobile-link py-3 px-4 border-b border-white/5 transition-all duration-300 rounded-md flex items-center gap-3 ${activeSection === "about"
+              ? "text-[#5DC9E4] bg-[#5DC9E4]/10 border-l-2 border-[#5DC9E4]"
+              : "hover:bg-white/5 hover:text-[#5DC9E4]"
+              }`}
+            onClick={(e) => handleSmoothScroll(e, "#about")}
           >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.SKILLS)}
+            <FaUser className={`text-base ${activeSection === "about" ? "text-[#5DC9E4]" : ""}`} />
+            <span>{t(TRANSLATION_KEYS.ABOUT)}</span>
+          </a>
+          <a
+            href="#skills"
+            className={`nav-mobile-link py-3 px-4 border-b border-white/5 transition-all duration-300 rounded-md flex items-center gap-3 ${activeSection === "skills"
+              ? "text-[#5DC9E4] bg-[#5DC9E4]/10 border-l-2 border-[#5DC9E4]"
+              : "hover:bg-white/5 hover:text-[#5DC9E4]"
+              }`}
+            onClick={(e) => handleSmoothScroll(e, "#skills")}
+          >
+            <FaCode className={`text-base ${activeSection === "skills" ? "text-[#5DC9E4]" : ""}`} />
+            <span>{t(TRANSLATION_KEYS.SKILLS)}</span>
           </a>
           <a
             href="#experiences"
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
-            onClick={() => setOpen(false)}
+            className={`nav-mobile-link py-3 px-4 border-b border-white/5 transition-all duration-300 rounded-md flex items-center gap-3 ${activeSection === "experiences"
+              ? "text-[#5DC9E4] bg-[#5DC9E4]/10 border-l-2 border-[#5DC9E4]"
+              : "hover:bg-white/5 hover:text-[#5DC9E4]"
+              }`}
+            onClick={(e) => handleSmoothScroll(e, "#experiences")}
           >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.WORK_EXPERIENCES)}
-          </a>
-          <a
-            href="#opensource"
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
-            onClick={() => setOpen(false)}
-          >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.OPEN_SOURCE)}
-          </a>
-          <a
-            href="#achievements"
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
-            onClick={() => setOpen(false)}
-          >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.ACHIEVEMENTS)}
-          </a>
-          <a
-            href="#blogs"
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
-            onClick={() => setOpen(false)}
-          >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.BLOGS)}
-          </a>
-          <a
-            href="#talks"
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
-            onClick={() => setOpen(false)}
-          >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.TALKS)}
+            <FaBriefcase className={`text-base ${activeSection === "experiences" ? "text-[#5DC9E4]" : ""}`} />
+            <span>{t(TRANSLATION_KEYS.WORK_EXPERIENCES)}</span>
           </a>
           <a
             href={cvUrl}
-            download
-            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 transition-all duration-300 rounded-md flex items-center"
+            download="CV-Fullstack-Develop.pdf"
+            className="nav-mobile-link py-3 px-4 border-b border-white/5 hover:bg-white/5 hover:text-[#5DC9E4] transition-all duration-300 rounded-md flex items-center gap-3"
             onClick={() => setOpen(false)}
           >
-            <span className="w-2 h-2 bg-[#5DC9E4] rounded-full mr-3"></span>
-            {t(TRANSLATION_KEYS.RESUME)}
+            <FaFileDownload className="text-base" />
+            <span>{t(TRANSLATION_KEYS.RESUME)}</span>
           </a>
           <a
             href="#contact"
-            className="mt-3 py-3 px-4 bg-[#5DC9E4] text-white font-medium rounded-md border border-[#5DC9E4] text-center transition-all duration-300 hover:bg-[#4ab7d3] hover:shadow-md"
-            onClick={() => setOpen(false)}
+            className={`nav-mobile-link py-3 px-4 border-b border-white/5 transition-all duration-300 rounded-md flex items-center gap-3 ${activeSection === "contact"
+              ? "text-[#5DC9E4] bg-[#5DC9E4]/10 border-l-2 border-[#5DC9E4]"
+              : "hover:bg-white/5 hover:text-[#5DC9E4]"
+              }`}
+            onClick={(e) => handleSmoothScroll(e, "#contact")}
           >
-            {t(TRANSLATION_KEYS.CONTACT)}
+            <FaEnvelope className={`text-base ${activeSection === "contact" ? "text-[#5DC9E4]" : ""}`} />
+            <span>{t(TRANSLATION_KEYS.CONTACT)}</span>
           </a>
         </div>
       </div>
 
       <style jsx>{`
-        .nav-link::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          bottom: 0;
-          left: 50%;
-          background: linear-gradient(to right, #2A7CB0, #5DC9E4);
+        /* Desktop Navigation - CSS thuần với media queries */
+        .header-nav {
+          display: none;
+          align-items: center;
+          gap: 0.25rem;
+          flex: 1;
+          justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+          .header-nav {
+            display: flex;
+            gap: 0.5rem;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .header-nav {
+            gap: 0.75rem;
+          }
+        }
+
+        .header-nav-link {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.5rem 0.75rem;
+          color: rgba(255, 255, 255, 0.9);
+          text-decoration: none;
+          border-radius: 0;
           transition: all 0.3s ease;
-          transform: translateX(-50%);
+          white-space: nowrap;
+          position: relative;
+          font-size: 0.75rem;
+          border: none;
+          border-bottom: 2px solid transparent;
+          font-family: "Times New Roman", serif;
+          text-transform: uppercase;
         }
-        
-        .nav-link:hover::after {
-          width: 70%;
+
+        @media (min-width: 640px) {
+          .header-nav-link {
+            padding: 0.5rem 0.5rem;
+            font-size: 0.75rem;
+          }
         }
-        
+
+        @media (min-width: 1024px) {
+          .header-nav-link {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+          }
+        }
+
+        .header-nav-icon {
+          font-size: 0.875rem;
+          transition: color 0.3s ease;
+          flex-shrink: 0;
+        }
+
+        .header-nav-text {
+          display: inline;
+        }
+
+        .header-nav-text-exp {
+          display: none;
+        }
+
+        .header-nav-text-short {
+          display: inline;
+        }
+
+        @media (min-width: 1280px) {
+          .header-nav-text-exp {
+            display: inline;
+          }
+          .header-nav-text-short {
+            display: none;
+          }
+        }
+
+        /* Hover state */
+        .header-nav-link:hover {
+          color: #5DC9E4;
+          border-bottom: 2px solid #5DC9E4;
+        }
+
+        .header-nav-link:hover .header-nav-icon {
+          color: #5DC9E4;
+        }
+
+        /* Active state */
+        .header-nav-link.active {
+          color: #5DC9E4;
+          border-bottom: 2px solid #5DC9E4;
+        }
+
+        .header-nav-link.active .header-nav-icon {
+          color: #5DC9E4;
+        }
+
+        /* Mobile Navigation */
         .nav-mobile-link {
           position: relative;
-          overflow: hidden;
         }
-        
+
         .nav-mobile-link::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 0;
           left: -100%;
           width: 100%;
           height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(93, 201, 228, 0.1), transparent);
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(93, 201, 228, 0.1),
+            transparent
+          );
           transition: all 0.5s ease;
         }
-        
+
         .nav-mobile-link:hover::before {
           left: 100%;
         }
-        
+
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
-        
+
         .nav-mobile-link {
           animation: fadeIn 0.3s ease forwards;
         }
-        
-        .nav-mobile-link:nth-child(1) { animation-delay: 0.05s; }
-        .nav-mobile-link:nth-child(2) { animation-delay: 0.1s; }
-        .nav-mobile-link:nth-child(3) { animation-delay: 0.15s; }
-        .nav-mobile-link:nth-child(4) { animation-delay: 0.2s; }
-        .nav-mobile-link:nth-child(5) { animation-delay: 0.25s; }
-        .nav-mobile-link:nth-child(6) { animation-delay: 0.3s; }
-        .nav-mobile-link:nth-child(7) { animation-delay: 0.35s; }
+
+        .nav-mobile-link:nth-child(1) {
+          animation-delay: 0.05s;
+        }
+        .nav-mobile-link:nth-child(2) {
+          animation-delay: 0.1s;
+        }
+        .nav-mobile-link:nth-child(3) {
+          animation-delay: 0.15s;
+        }
+        .nav-mobile-link:nth-child(4) {
+          animation-delay: 0.2s;
+        }
+        .nav-mobile-link:nth-child(5) {
+          animation-delay: 0.25s;
+        }
       `}</style>
     </header>
   );

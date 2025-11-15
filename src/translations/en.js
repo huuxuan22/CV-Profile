@@ -12,14 +12,18 @@ export const en = {
   blogs: 'Blogs',
   talks: 'Talks',
   resume: 'Resume',
-  
+
   // Hero Section
   hello: 'Hello!',
   i_am: 'I am',
+  greeting: 'How are you feeling today?',
   full_stack_developer: 'Full Stack Developer',
+  typewriter_greeting: "Hello there 👋",
+  typewriter_role: "ReactJS / Java Developer",
+  typewriter_passion: "Passionate about coding & creating",
   welcome_message: 'Welcome to my portfolio. I am a passionate developer with a love for technology and innovation.',
   get_in_touch: 'Get In Touch',
-  
+
   // Skills Section
   professional_skills: 'Skills & Technologies',
   skills_description: 'Explore the technologies and tools I master, categorized by professional fields',
@@ -32,7 +36,7 @@ export const en = {
   years_experience: 'Years Experience',
   projects: 'Projects',
   explore_my_projects: 'Explore My Projects',
-  
+
   // Contact Section
   get_in_touch_title: 'Get In Touch',
   contact_description: 'Have an interesting project? Let\'s get in touch to discuss how we can work together.',
@@ -44,12 +48,131 @@ export const en = {
   email: 'Email',
   phone: 'Phone',
   location: 'Location',
-  
+
+  // Social Links
+  link_github: 'https://github.com/huuxuan22',
+  link_linkedin: 'https://www.linkedin.com/in/huu-xuan-tran-duong-77356a338/',
+  link_twitter: '#',
+  link_facebook: 'https://www.facebook.com/tran.duong.huu.xuan?locale=vi_VN',
+  link_instagram: 'https://www.instagram.com/tranduonghuuxuan/',
+  link_gitlab: 'https://gitlab.com/tranduonghuuxuan22',
+
   // Common
   loading: 'Loading...',
   error: 'Error',
   success: 'Success',
   close: 'Close',
   send: 'Send',
-  cancel: 'Cancel'
+  cancel: 'Cancel',
+
+  // About Me
+  full_name: 'Tran Duong Huu Xuan',
+  age: '22 years old',
+  student_year: '4th year student',
+  university: 'Da Nang University of Science and Technology',
+  address_line: '08 Hai Phong street',
+  strengths_title: 'Strengths',
+  strengths_1: 'Eager to learn',
+  strengths_2: 'High responsibility',
+  strengths_3: 'Quick adaptation',
+  strengths_4: 'Problem-solving mindset',
+  strengths_5: 'Teamwork skills',
+  strengths_6: 'Creative',
+  goals_title: 'Goals',
+  goals_1: 'Become a professional Fullstack Developer',
+  goals_2: 'Build modern web applications',
+  goals_3: 'Contribute to the programming community',
+  goals_4: 'Develop leadership skills',
+  about_description: 'I am an Information Technology student with a passion for programming and creativity. Always seeking opportunities to learn, develop skills and apply knowledge in practice. Desire to work in a professional environment and contribute to meaningful projects.',
+
+  // Personal Projects
+  experience_title: 'EXPERIENCE',
+  experience_description: 'Real projects and professional work experience',
+  category_all: 'All',
+  category_internship: 'Internship',
+  category_personal: 'Personal Project',
+  category_group: 'Group Project',
+  achievements_title: 'Outstanding Achievements',
+  button_frontend: 'Frontend',
+  button_backend: 'Backend',
+  button_view_demo: 'View Demo',
+  button_view_code: 'View Code',
+  team_size: 'Team Size',
+
+  // Project 1: Techkan
+  project_techkan_title: 'Techkan',
+  project_techkan_description: 'Developed critical system features from Frontend to Backend. Integrated third-party login (Google/Facebook) to optimize user experience. Built image upload functionality to AWS S3, managed images and optimized display size. Developed Excel export feature for data analysis. Participated in UI/UX editing and optimization to make the system consistent and easier to use. Fixed long-standing bugs, handled business errors and optimized system performance.',
+  project_techkan_company: 'Techzen Company Limited',
+  project_techkan_role: 'Fullstack Developer Intern',
+  project_techkan_duration: '2 months',
+  project_techkan_achievement_1: 'Improved user experience with faster and more stable login',
+  project_techkan_achievement_2: 'Reduced data manipulation time thanks to Excel export feature',
+  project_techkan_achievement_3: 'Helped reduce backlog bugs and improve system quality',
+
+  // Project 2: Ptran Fashion
+  project_ptran_title: 'Ptran Fashion E-commerce',
+  project_ptran_description: 'Built a complete fashion e-commerce website with full features for both users and administrators. Users: Registration, login (via Google/Facebook), product browsing, ordering, payment (cash or WPay), order tracking, order cancellation, comments, feedback. Administrators: Product management, orders, accounts, promotions, discount vouchers, statistics and user feedback processing.',
+  project_ptran_role: 'Developer (Full-stack)',
+  project_ptran_duration: '3 months',
+  project_ptran_achievement_1: 'Built a complete e-commerce system with full features',
+  project_ptran_achievement_2: 'Integrated OAuth login and WPay payment',
+  project_ptran_achievement_3: 'Built admin page with full management functions',
+
+  // Project 3: Shoez
+  project_shoez_title: 'Shoez E-commerce',
+  project_shoez_description: 'Developed a shoe sales website with optimal user experience and smart management features. Outstanding features: Shopping system, cart and secure payment (MoMo, WPay). Real-time online chat between customers and store via WebSocket. Admin page allows order statistics tracking and feedback reception.',
+  project_shoez_role: 'Developer (Full-stack)',
+  project_shoez_duration: '4 months',
+  project_shoez_team_size: '2 people',
+  project_shoez_achievement_1: 'Integrated real-time chat between customers and store via WebSocket',
+  project_shoez_achievement_2: 'Secure payment system with MoMo and WPay',
+  project_shoez_achievement_3: 'Admin page with order statistics and feedback management',
+
+  // Project 4: Real-time Messaging
+  project_messaging_title: 'Real-time Messaging Web Application',
+  project_messaging_description: 'Developed a real-time web messaging application with full social features. Flexible authentication: Register, login with regular account, or via Google/Facebook. Messaging features: 1-1 chat between two users. Social features: Add friends, create chat groups and add multiple members to groups. Search: Search users and friend lists to start conversations. Account management: Logout, update personal information.',
+  project_messaging_role: 'Developer (Full-stack)',
+  project_messaging_duration: '1 month',
+  project_messaging_achievement_1: 'Built real-time chat application with full social features',
+  project_messaging_achievement_2: 'Integrated OAuth login (Google/Facebook) and JWT authentication',
+  project_messaging_achievement_3: '1-1 chat, group chat and friend features',
+
+  // Hobbies
+  hobby_football: 'Football',
+  hobby_football_desc: 'Favorite sport, improving health and team spirit',
+  hobby_volleyball: 'Volleyball',
+  hobby_volleyball_desc: 'Smooth coordination, speed and accuracy',
+  hobby_guitar: 'Guitar',
+  hobby_guitar_desc: 'Playing music helps relax and express emotions through music',
+  hobby_cajon: 'Cajon',
+  hobby_cajon_desc: 'Creating unique rhythms, passion for percussion',
+  hobby_reading: 'Reading',
+  hobby_reading_desc: 'Expanding knowledge, developing thinking and imagination',
+  hobby_technology: 'Technology',
+  hobby_technology_desc: 'Exploring new technologies, learning and updating trends',
+
+  // Contact
+  call_me: 'Call Me',
+  chat_live: 'Chat Live',
+  chat_available: 'We\'re available Mon - Fri, 9:00 AM - 6:00 PM',
+  chat_available_vi: 'Chúng tôi có mặt Thứ 2 - Thứ 6, 9:00 - 18:00',
+  ask_question: 'Ask a Question',
+  ask_question_vi: 'Đặt Câu Hỏi',
+  ask_question_detail: 'Send us an email and we\'ll get back to you within 24 hours',
+  ask_question_detail_vi: 'Gửi email cho chúng tôi và chúng tôi sẽ phản hồi trong vòng 24 giờ',
+  button_chat_now: 'Chat Now',
+  button_chat_now_vi: 'Chat Ngay',
+  button_get_started: 'Get Started',
+  button_get_started_vi: 'Bắt Đầu',
+  button_visit_page: 'Visit Page',
+  button_visit_page_vi: 'Truy Cập Trang',
+  button_follow_us: 'Follow Us',
+  button_follow_us_vi: 'Theo Dõi',
+  connect_title: 'Connect',
+  connect_title_en: 'Connect',
+  address_full: '08 Hai Phong street, Thanh Khue, Da Nang, Vietnam',
+
+  // Skills
+  other: 'Other',
+  other_vi: 'Khác'
 };
